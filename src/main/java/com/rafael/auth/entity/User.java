@@ -1,6 +1,7 @@
 package com.rafael.auth.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "permission")
+@Table(name = "user")
 @Getter
 @Setter
 @ToString
@@ -70,6 +71,15 @@ public class User implements UserDetails, Serializable {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.getPermissions();
+	}
+
+	public List<String> getRoles() {
+		List<String> roles = new ArrayList<>();
+		this.permissions.stream().forEach(p -> {
+			roles.add(p.getDescription());
+		});
+
+		return roles;
 	}
 
 	@Override
