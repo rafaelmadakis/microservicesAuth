@@ -10,7 +10,7 @@ import com.rafael.auth.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	@Query("SELECT u FROM User u WJERE u.userName =:userName")
+	@Query("SELECT u FROM User u WHERE u.userName =:userName")	
 	User findByUserName(@Param("userName") String userName);
 
 }

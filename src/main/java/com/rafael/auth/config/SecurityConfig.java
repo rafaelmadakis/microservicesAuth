@@ -12,8 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.rafael.auth.jwt.JwtConfigurer;
 import com.rafael.auth.jwt.JwtTokenProvider;
 
+
+
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
 	private final JwtTokenProvider jwtTokenProvider;
 
@@ -24,30 +26,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		return passwordEncoder;
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(); 
+		return bCryptPasswordEncoder;
 	}
-
+	
 	@Bean
 	@Override
-	public AuthenticationManager authenticationManager() throws Exception {
+	public AuthenticationManager authenticationManagerBean()  throws Exception {
 		return super.authenticationManagerBean();
-
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-			
-		http
-		.httpBasic().disable()
-		.csrf().disable()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and()
-			.authorizeRequests()
-			.antMatchers("/login").permitAll()
-			.anyRequest().authenticated()
-			.and()
-			.apply( new JwtConfigurer(jwtTokenProvider));
+			http
+			   .httpBasic().disable()
+			   .csrf().disable()
+			   .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			   .and()
+			        .authorizeRequests()
+			        .antMatchers("/login").permitAll()
+			        .anyRequest().authenticated()
+			   .and()
+			   .apply(new JwtConfigurer(jwtTokenProvider));
 	}
-
 }

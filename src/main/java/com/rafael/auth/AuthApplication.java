@@ -13,13 +13,14 @@ import com.rafael.auth.entity.User;
 import com.rafael.auth.repository.PermissionRepository;
 import com.rafael.auth.repository.UserRepository;
 
+
 @SpringBootApplication
 public class AuthApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AuthApplication.class, args);
 	}
-
+	
 	@Bean
 	CommandLineRunner init(UserRepository userRepository, PermissionRepository permissionRepository,
 			BCryptPasswordEncoder passwordEncoder) {
@@ -31,21 +32,20 @@ public class AuthApplication {
 
 	private void initUsers(UserRepository userRepository, PermissionRepository permissionRepository,
 			BCryptPasswordEncoder passwordEncoder) {
-
+		
 		Permission permission = null;
 		Permission findPermission = permissionRepository.findByDescription("Admin");
 		if (findPermission == null) {
 			permission = new Permission();
 			permission.setDescription("Admin");
 			permission = permissionRepository.save(permission);
-
 		} else {
 			permission = findPermission;
 		}
-
+		
 		User admin = new User();
 		admin.setUserName("rafael");
-		admin.setAAccountNonExpired(true);
+		admin.setAccountNonExpired(true);
 		admin.setAccountNonLocked(true);
 		admin.setCredentialsNonExpired(true);
 		admin.setEnabled(true);
@@ -55,9 +55,7 @@ public class AuthApplication {
 		User find = userRepository.findByUserName("rafael");
 		if (find == null) {
 			userRepository.save(admin);
-
 		}
-
 	}
 
 }

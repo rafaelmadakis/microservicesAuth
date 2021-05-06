@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,10 +36,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class User implements UserDetails, Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -9020973236707102285L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +49,7 @@ public class User implements UserDetails, Serializable {
 	private String password;
 
 	@Column(name = "accountNonExpired")
-	private Boolean aAccountNonExpired;
+	private Boolean accountNonExpired;
 
 	@Column(name = "accountNonLocked")
 	private Boolean accountNonLocked;
@@ -62,15 +60,14 @@ public class User implements UserDetails, Serializable {
 	@Column(name = "enabled")
 	private Boolean enabled;
 
-	@ManyToMany
-	@JoinTable(name = "user_permission", joinColumns = {
-			@JoinColumn(referencedColumnName = "id_user") }, inverseJoinColumns = {
-					@JoinColumn(referencedColumnName = "id_permissions") })
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_permission", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
+			@JoinColumn(name = "id_permissions") })
 	private List<Permission> permissions;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.getPermissions();
+		return this.permissions;
 	}
 
 	public List<String> getRoles() {
@@ -78,7 +75,6 @@ public class User implements UserDetails, Serializable {
 		this.permissions.stream().forEach(p -> {
 			roles.add(p.getDescription());
 		});
-
 		return roles;
 	}
 
@@ -89,12 +85,12 @@ public class User implements UserDetails, Serializable {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return this.isAccountNonExpired();
+		return this.accountNonExpired;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return this.isAccountNonLocked();
+		return this.accountNonLocked;
 	}
 
 	@Override

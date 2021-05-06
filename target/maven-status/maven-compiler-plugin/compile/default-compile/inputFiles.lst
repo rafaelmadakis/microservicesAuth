@@ -1,0 +1,12 @@
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\AuthApplication.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\entity\User.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\jwt\JwtConfigurer.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\config\SecurityConfig.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\repository\PermissionRepository.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\controller\AuthController.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\entity\Permission.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\jwt\JwtTokenProvider.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\jwt\JwtTokenFilter.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\service\UserService.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\vo\UserVO.java
+C:\Users\rafae\Documents\Projetos\workspace\auth\src\main\java\com\rafael\auth\repository\UserRepository.java

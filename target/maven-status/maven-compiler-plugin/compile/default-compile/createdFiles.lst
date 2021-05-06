@@ -1,0 +1,12 @@
+com\rafael\auth\jwt\JwtTokenProvider.class
+com\rafael\auth\AuthApplication.class
+com\rafael\auth\vo\UserVO.class
+com\rafael\auth\config\SecurityConfig.class
+com\rafael\auth\entity\User.class
+com\rafael\auth\controller\AuthController.class
+com\rafael\auth\jwt\JwtConfigurer.class
+com\rafael\auth\jwt\JwtTokenFilter.class
+com\rafael\auth\repository\PermissionRepository.class
+com\rafael\auth\repository\UserRepository.class
+com\rafael\auth\entity\Permission.class
+com\rafael\auth\service\UserService.class
